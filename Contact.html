@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ro-RO">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Tutan Diana-Maria">
+  <title>Formular</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/f18a20cbeb.js" crossorigin="anonymous"></script>
+
+  <nav class="top-nav">
+      <section></section>
+      <input id="menu-toggle" type="checkbox" />
+      <label class="menu-button-container" for="menu-toggle">
+        <div class="menu-button"></div>
+      </label>
+      <ul class="menu">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Produse.html">Produse</a></li>
+        <li><a href="Cumpara.html">Cumpara</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+      </ul>
+
+    </nav>
+</head>
+
+<body>
+    <section class = "header">
+      <div class = "text-box">
+        <h1>Contact</h1>
+      </div>	
+    </section>
+    
+        <section class = "contact">
+          <div class="row">
+              <div class="contact-col">
+                  <h2 class="contact__h2">Contacteaza-ne!</h2>
+                  <form action="https://httpbin.org/get" method="get" class="contact__form">
+                      <fieldset class="contact__fieldset">
+                          <p class="contact__p">
+                              <label class="contact__label" for="name">Nume:</label>
+                              <input class="contact__input" type="text" name="name" id="name" placeholder="Nume"
+                                  required>
+                          </p>
+                          <p class="contact__p">
+                              <label class="contact__label" for="email">Email:</label>
+                              <input class="contact__input" type="email" name="email" id="email" placeholder="Email"
+                                  required>
+                          </p>
+                          <p class="contact__p">
+                              <label class="contact__label" for="message">Mesaj:</label>
+                              <br>
+                              <textarea class="contact__textarea" name="message" id="message" cols="30" rows="10"
+                                  placeholder="Scrie mesajul"></textarea>
+                          </p>
+                      </fieldset>
+                      <button class="contact__button" type="submit">Trimitere</button>
+                      <button class="contact__button" type="reset">Resetare</button>
+                  </form>
+              </div>
+              <div class="contact-col">
+                  <h2>Informatii de contact</h2>
+                    <p><i class="fa fa-phone"></i> +40 737752463</p>
+                    <p><i class="fa fa-map-marker"></i> Splaiul Independentei nr. 313, Bucuresti, Romania</p>
+                    <iframe
+                      id="harta"
+                      style="margin-top: 20px"
+                      width="500"
+                      height="350"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.7343970809434!2d26.04691757580422!3d44.43861020128091!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b201ea132d5141%3A0xf5d5aecb94fa6dc7!2sU.N.S.T.%20POLITEHNICA%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1699425401169!5m2!1sro!2sro" 
+                      allowfullscreen=""
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+              </div>
+      </section>
+      
+    </body>
+    
+    <footer>
+      <div class = "icons">
+      <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-sm"></i></a>
+      <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-sm"></i></a>
+      <a href="mailto: tudor59@yahoo.com"><i class="fa-regular fa-envelope fa-sm"></i></a>
+      </div>
+      <p>
+          <span class="nowrap">Copyright &copy; <time id="year"></time></span>
+          <span class="nowrap">Panouri SERIALE</span>
+      </p>
+  </footer>
+  
+</html>

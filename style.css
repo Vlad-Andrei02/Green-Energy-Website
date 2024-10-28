@@ -1,0 +1,695 @@
+:root {
+    /**
+     * typography
+     */
+  
+    --ff-quicksand: "Quicksand", sans-serif;
+    --ff-nunito_sans: "Nunito Sans", sans-serif;
+    
+    --fs-1: 5.5rem;
+    --fs-2: 3.6rem;
+    --fs-3: 3.2rem;
+    --fs-4: 2.6rem;
+    --fs-5: 2.4rem;
+    --fs-6: 2.2rem;
+    --fs-7: 2rem;
+    --fs-8: 1.8rem;
+    --fs-9: 1.5rem;
+    --fs-10: 1.4rem;
+    --fs-11: 1.3rem;
+    
+    --fw-500: 500;
+    --fw-600: 600;
+    --fw-700: 700;
+  
+    /**
+     * spacing
+     */
+  
+    --section-padding: 40px;
+  
+    /**
+     * box shadow
+     */
+  
+    --shadow: 0 15px 40px 0 hsla(224, 24%, 47%, 0.1);
+  
+    /**
+     * border radius
+     */
+  
+    --radius-circle: 50%;
+    --radius-60: 60px;
+    --radius-50: 50px;
+    --radius-30: 30px;
+    --radius-20: 20px;
+    --radius-15: 15px;
+    --radius-5: 5px;
+  
+    /**
+     * transition
+     */
+  
+    --transition-1: 0.25s ease;
+    --transition-2: 0.5s ease;
+    --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+  }
+
+
+
+/Asigurarea unei baze comune pentru stilurile paginilor web/
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}/aceste atribute se aplica pentru toate elementele html/
+
+img {
+    display: block; /bloc de afișare care scapă de spațiul mic de sub imaginile pentru care au fost proiectate inițial să fie în linie, stabilește comportamentul de afișare al imaginii la "block" (bloc)/
+    max-width: 60%;
+    height: auto; /face imaginea responsive/
+}
+
+input,
+button,
+textarea {
+    font: inherit;  /aceste elemente vor moșteni fontul elementului lor părinte/
+}
+
+input { width: 100%; }
+
+button { cursor: pointer; }
+
+address { font-style: normal; }
+
+  
+/-----------------------------------\
+    #REUSED STYLE
+\-----------------------------------/
+  
+  .container { padding-inline: 16px; }
+  .section { padding-block: var(--section-padding); }
+  
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--ff-quicksand);
+    font-size: var(--fs-11);
+    font-weight: var(--fw-700);
+    text-transform: uppercase;
+    max-width: max-content;
+    padding: 20px 40px;
+    border-radius: var(--radius-20) 0;
+    line-height: 1.4;
+    transition: var(--transition-1);
+  }
+  
+  .btn:is(:hover, :focus-visible) {
+    border-radius: 0;
+    border-top-right-radius: var(--radius-20);
+  }
+  
+  .btn-primary {
+    background-color: var(--rich-black-fogra-29);
+    color: var(--white);
+  }
+  
+  .btn-primary:is(:hover, :focus-visible) {
+    background-color: var(--yellow-green);
+    color: var(--white);
+  }
+  
+  .w-100 { width: 100%; 
+}
+  
+  .has-before,
+  .has-after {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .has-before::before,
+  .has-after::after {
+    content: "";
+    position: absolute;
+  }
+   
+  .img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-2);
+  }
+  
+  .img-holder {
+    aspect-ratio: var(--width) / var(--height);
+    background-color: var(--light-gray);
+    overflow: hidden;
+  }
+  
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 1s ease;
+  }
+  
+  [data-reveal="left"] { transform: translateX(-30px); }
+  
+  [data-reveal="right"] { transform: translateX(30px); }
+  
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translate(0);
+  }
+
+
+/* || GENERAL STYLES */
+
+
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    background-color: #bcf861;
+  }
+  
+a {
+    color: #000;
+}
+  
+h1,
+h2,
+h3 {
+    font-family: var(--FF-HEADINGS);
+    letter-spacing: 0.1em;    /Proprietatea letter-spacing controleaza spatiul dintre litere/
+}
+
+h2,
+h3 {
+    margin-bottom: 1em;  /adaugă un spațiu (margine) în partea de jos a fiecărui element h2 și h3/
+}
+
+p {
+    line-height: 1.5;
+}
+
+a:any-link {
+    color: var(--LINK-COLOR);
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--LINK-HOVER);  /Când utilizatorul plasează cursorul mouse-ului deasupra link-ului (hover) sau când link-ul devine focalizat (de exemplu, prin navigarea utilizând tastatura și ajungerea pe link), culoarea textului link-ului este schimbată la o altă valoare/
+}
+
+a:active {
+    color: var(--LINK-ACTIVE); /Se aplică atunci când utilizatorul tocmai a făcut clic pe link/
+}
+
+/* || HEADER */
+
+/* header */
+.header {
+    min-height: 30vh; /* Înălțimea minimă a elementului va ocupa întreaga înălțime a ferestrei browserului */
+    width: 100%; /* Lățimea elementului setată la 100% din lățimea ferestrei */
+    background-color: #44c21d;
+    
+    
+} 
+  
+.text-box {
+    width: 100%;
+    color: #f1dddd;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    text-align: center;
+    
+}
+
+.text-box h1 {
+    font-size: 36px; /* Am redus dimensiunea textului pentru h1 */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f1e6dd;
+}
+
+.text-box p {
+    margin: 10px 0 20px; /* Am ajustat marginile paragrafului */
+    font-size: 12px; /* Am redus dimensiunea textului pentru paragraf */
+    color: #f1e6dd;
+}
+.my-button{
+      display: inline-block;
+      text-decoration: none;
+      color: #f1e6dd;
+      border: 1px solid #f1e6dd;
+      padding: 12px 14px;
+      font-size: 13px;
+      background: transparent;
+      position: relative;
+      cursor: pointer;
+      border-radius: 10px;
+}
+.my-button:hover{
+      border: 1px solid #d9946f;
+      background:  #d9946f;
+      transition: 1s;
+} 
+    
+nav .fa{
+      display: none;
+}
+    
+@media(max-width: 700px) {
+    .text-box h1{
+        font-size: 23px;
+    }
+    .nav-links ul li{
+        display: block;
+    }
+    .nav-links {
+        position: fixed;
+        background: #d9946f;;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+        transition: 1s;
+    }
+    nav .fa{
+        display: block;
+        color: #f1e6dd;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .nav-links ul{
+        padding: 30px;
+    }
+}
+    
+@media (min-width: 701px) and (max-width: 1150px) {
+      .text-box h1 {
+        font-size: 35px;
+    }
+}
+
+.logo{
+        max-width: 30px;
+}
+.top-nav {
+        position: relative;
+        width: 100%;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #f028004a;
+        background: rgb(4, 50, 0);
+        color: bisque;
+        height: 50px;
+        align-self: left;
+        padding: 0em;
+        z-index: 100;
+    }
+      
+.top-nav a {
+        text-decoration: none;
+        color: bisque;
+        transition: color 0.3s ease;
+}
+      
+.top-nav .nav-link.active {
+        color: bisque;
+        font-weight: bold;
+}
+      
+.top-nav a:hover {
+        color: rgba(180, 248, 6, 0.341);
+}
+      
+.top-nav .menu {
+        flex-grow: 1; /* Face ca elementul să ocupe tot spațiul disponibil */
+}
+      
+.top-nav .logo {
+        margin-right: 20px; /* Ajustați această valoare după necesități */
+}
+      
+.menu {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%; 
+        justify-content: center;
+}
+      
+.menu > li {
+        margin: 0 1rem;
+        overflow: hidden;
+}
+      
+.menu-button-container {
+        display: none;
+        height: 100%;
+        width: 30px;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start; 
+        margin-right: 40px; 
+}
+      
+#menu-toggle {
+        display: none;
+}
+      
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+    display: block;
+    background-color: #fff;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 2px;
+}
+      
+.menu-button::before {
+    content: '';
+        margin-top: -8px;
+}
+      
+.menu-button::after {
+        content: '';
+        margin-top: 8px;
+}
+      
+#menu-toggle:checked + .menu-button-container .menu-button::before {
+        margin-top: 0px;
+        transform: rotate(405deg);
+}
+      
+#menu-toggle:checked + .menu-button-container .menu-button {
+        background: rgba(255, 255, 255, 0);
+}
+      
+#menu-toggle:checked + .menu-button-container .menu-button::after {
+        margin-top: 0px;
+        transform: rotate(-405deg);
+}
+@media (max-width: 500px) {
+        .menu-button-container {
+          display: flex;
+}
+.menu {
+          position: absolute;
+          top: 0;
+          margin-top: 50px;
+          left: 0;
+          flex-direction: column;
+          width: 100%;
+          justify-content: center;
+          align-items: center;
+}
+#menu-toggle ~ .menu li {
+          height: 0;
+          margin: 0;
+          padding: 0;
+          border: 0;
+          transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+#menu-toggle:checked ~ .menu li {
+          border: 1px solid #020000;
+          height: 2.5em;
+          padding: 0.5em;
+          transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.menu > li {
+          display: flex;
+          justify-content: center;
+          margin: 0;
+          padding: 0.5em 0;
+          width: 100%;
+          color: white;
+          background-color: #060000;
+}
+.menu > li:not(:last-child) {
+        border-bottom: 1px solid #020000;
+        }
+}
+.row{
+        margin-left: 15%;
+        margin-right: 15%;
+        display: flex;
+        justify-content:space-between ;  /Sa existe spatiu egal intre elemente/
+}
+@media(max-width: 700px) {
+        .row{
+        flex-direction: column;
+        }
+    }
+    
+/* || ABOUT */
+.about {
+    width: 100%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+.about h1{
+    font-weight: bold;
+    text-align: center;
+}
+
+.about-col {
+    flex-basis: 50%;
+    padding: 20px 2px;
+}
+
+.about-col img {
+    border-radius: 3px;
+    max-width: 100%;
+    margin-left: -100px; /* Adaugă spațiu suplimentar în partea dreaptă a imaginii */
+
+}
+.about-col p {
+    padding: 15px 0 px 15px;
+    text-align: left;
+    font-size: 20.5px;
+}
+
+.about2 {
+    width: 100%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.about-col1 p {
+    padding: 50px; /* Ajustarea valorilor de padding */
+    text-align: left; /* Alinierea textului la stânga */
+    font-size: 19.5px;
+    margin-left: 50px;
+}
+
+.about-col1 img {
+    float: right;
+    width: 40%;
+    border-radius: 3px;
+    margin-left: 70px;
+    margin-right: 70px;
+}
+
+.about-col2 p {
+    padding: 50px; /* Ajustarea valorilor de padding */
+    text-align: left; /* Alinierea textului la stânga */
+    font-size: 19.5px;
+    margin-left: 50px;
+}
+
+.about-col2 img {
+    float: left;
+    width: 40%;
+    border-radius: 3px;
+    margin-left: 70px;
+    margin-right: 70px;
+    
+}
+
+.Home-h1 {
+    margin-bottom: 30px;
+    margin-left: 400px; /* Adaugă spațiu între h1 și elementele care urmează după */
+    grid-column: 3; /* Adjusted grid-column */
+    background-color: rgb(94, 255, 88);
+    padding: 10px;
+}
+
+.Home-h2 {
+    margin-bottom: 30px; /* Adaugă spațiu între h1 și elementele care urmează după */
+    margin-left: 20px;
+    grid-column: 2; /* Adjusted grid-column */
+    background-color: rgb(94, 255, 88);
+    padding: 10px;
+}
+
+.Home-h3 {
+    margin-bottom: 30px; /* Adaugă spațiu între h1 și elementele care urmează după */
+    margin-left: 600px;
+    grid-column: 3; /* Adjusted grid-column */
+    background-color: rgb(94, 255, 88);
+    padding: 10px;
+}
+
+/* || CONTACT */
+.contact {
+    width: 100%;
+    margin: auto;
+  }
+  
+.contact-col {
+    flex-basis: 40%;
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+  
+.contact-col div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+.contact__h2 {
+    margin: 0;
+}
+
+.contact__fieldset {
+    border: none;
+}
+
+.contact__p {
+    margin: 1em 0;
+}
+
+.contact__label {
+    display: block;
+    font-weight: bold;
+}
+
+.contact__input,
+.contact__textarea {
+    padding: 0.5em;
+    border-radius: var(--BORDER-RADIUS);
+    border-width: 2px;
+    width: 100%;
+}
+
+.contact__button {
+    padding: 0.5em;
+    border-radius: var(--BORDER-RADIUS);
+    background-color: var(--HIGHLIGHT-COLOR);
+    color: var(--BUTTON-COLOR);
+    font-weight: bold;
+}
+
+.iframe{
+        width="100%"
+        height="450"
+        style="border: 0"
+}
+
+
+.competences {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.competences2{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 100px;
+}
+.comp-col{
+    flex-basis: 43%;
+    background: rgb(208, 201, 210);
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    transition: 1s;
+}
+.comp-col:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.4);
+}
+.competences h1{
+    background-color: #eaeaea;
+}
+
+footer {
+    background-color: #44c21d;
+    color: #0e2e00;
+    text-align: center;
+    padding: 10px; /* Se asigura ca exista mai mult spatiu intre scris si border */
+    position: relative;
+    bottom: 0; /* Se asigura ca footer-ul sa fie in josul paginii*/
+    width: 100%;
+}
+
+footer a {
+    color: #808080;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+/-----------------------------------\
+  #HERO
+\-----------------------------------/
+.hero-list { display: none; 
+
+.hero {
+    position: relative;
+    background-color: var(--yellow-green);
+    padding-block: calc(var(--section-padding) + 60px) 0;
+    margin-block-end: var(--section-padding);     
+}
+    
+.hero .container {
+      display: grid;
+      gap: 50px;
+}
+    
+.hero-title {
+      color: var(--white);
+      text-align: left;
+      line-height: 1.4;
+      margin-block-end: 30px;
+}
+    
+.hero-title .span {
+      display: inline;
+      color: var(--smoky-black);
+}
+    
+.hero .btn { margin-inline: auto; }
+    
+.hero .btn:is(:hover, :focus-visible) {
+      background-color: var(--white);
+      color: var(--black);
+}
+    
+.hero-banner { margin-block-end: -15%;
+}
+

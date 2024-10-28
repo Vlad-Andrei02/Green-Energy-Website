@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <nav class="top-nav">
+        <section></section>
+        <input id="menu-toggle" type="checkbox" />
+        <label class="menu-button-container" for="menu-toggle">
+        <script src="https://kit.fontawesome.com/f18a20cbeb.js" crossorigin="anonymous"></script>
+        <div class="menu-button"></div>
+        </label>
+        <ul class="menu">
+
+          <li><a href="Home.html">Home</a></li>
+          <li><a href="Produse.html">Produse</a></li>
+          <li><a href="Cumpara.html">Cumpara</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+
+        </ul>
+      </nav>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .produse-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 1px;
+    }
+
+    .produs {
+      text-align: center;
+      cursor: pointer;
+      border: 1px solid #ddd;
+      padding: 10px;
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .produs img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 5px;
+    }
+
+    #cos-container {
+      position: fixed;
+      top: 0.1px;
+      right: 0.1px;
+      text-align: center;
+      background-color: #f4f4f4;
+      border-radius: 0.1px; /* ajustează raza de colț */
+      box-shadow: 0 0 0.1px rgba(0, 0, 0, 0.1); /* ajustează umbra */
+    }
+
+    #cos-container button {
+      padding: 0.1px 0.5px; /* ajustează dimensiunea butonului */
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 2px; /* ajustează raza de colț a butonului */
+      cursor: pointer;    
+    }
+
+    #cos-imagine {
+      max-width: 50px; /* ajustează dimensiunea imaginii */
+      height: auto;
+      cursor: pointer;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css">
+  
+    <div class = "text-box">
+        <title>Magazin Online</title>
+    </div>
+
+</head>
+
+<body>
+
+    <section class = "header">
+        <div class = "text-box">
+            <h1>Magazin Online</h1>
+        </div>	
+    </section>
+
+  <div class="produse-container">
+    <div class="produs" onclick="adaugaInCos('Panouri solare fotovoltaice 410w Monocristaline PERC', 1500)">
+      <h2>Panouri solare fotovoltaice 410w Monocristaline PERC</h2>
+      <p>Panourile solare fotovoltaice de 410W Monocristaline PERC TIER1 reprezintă o soluție avansată și eficientă pentru producția de energie electrică din surse regenerabile. Aceste panouri integrate de înaltă performanță aduc multiple beneficii și tehnologii de ultimă generație.</p>
+      <p>Pret: 1500 lei</p>
+      <img src="poza1.webp" alt="Produs 1">
+    </div>
+
+    <div class="produs" onclick="adaugaInCos('Panou Solar Apa Calda Presurizat 150 litri', 2000)">
+      <h2>Panou Solar Apa Calda Presurizat 150 litri</h2>
+      <p>Panoul solar pentru apă caldă presurizat de 150 litri este un sistem avansat de colectare a energiei solare, special conceput pentru a furniza apă caldă menajeră în mod eficient și ecologic..</p>
+      <p>Pret: 2000 lei</p>
+      <img src="poza2.webp" alt="Produs 2">
+    </div>
+  </div>
+
+  <div id="cos-container">
+    <img id="cos-imagine" src="cos.png" alt="Coșul tău" onclick="afiseazaCos()">
+    <p>Coșul tău:</p>
+    <ul id="lista-cos"></ul>
+    <p id="total-plata">Total de plată: 0 lei</p>
+    <button onclick="finalizareComanda()">Finalizează comanda</button>
+  </div>
+
+  <script>
+    let cosCumparaturi = [];
+
+    function adaugaInCos(numeProdus, pret) {
+      const index = cosCumparaturi.findIndex(produs => produs.nume === numeProdus);
+
+      if (index !== -1) {
+        cosCumparaturi[index].cantitate++;
+      } else {
+        cosCumparaturi.push({ nume: numeProdus, cantitate: 1, pret: pret });
+      }
+
+      actualizeazaListaCos();
+      calculeazaTotalPlata();
+    }
+
+    function actualizeazaListaCos() {
+      const listaCos = document.getElementById('lista-cos');
+      listaCos.innerHTML = '';
+
+      cosCumparaturi.forEach((produs, index) => {
+        const elementLi = document.createElement('li');
+        elementLi.textContent = `${produs.nume} x ${produs.cantitate} - ${produs.pret * produs.cantitate} lei`;
+
+        const buttonElimina = document.createElement('button');
+        buttonElimina.textContent = 'Elimină';
+        buttonElimina.onclick = function () {
+          eliminaDinCos(index);
+        };
+
+        elementLi.appendChild(buttonElimina);
+        listaCos.appendChild(elementLi);
+      });
+    }
+
+    function eliminaDinCos(index) {
+      if (cosCumparaturi[index].cantitate > 1) {
+        cosCumparaturi[index].cantitate--;
+      } else {
+        cosCumparaturi.splice(index, 1);
+      }
+
+      actualizeazaListaCos();
+      calculeazaTotalPlata();
+    }
+
+    function finalizareComanda() {
+    const totalPlata = cosCumparaturi.reduce((total, produs) => total + produs.pret * produs.cantitate, 0);
+    if (totalPlata != 0) {
+      alert('Comanda a fost plasata cu succes!');
+      cosCumparaturi = [];
+      actualizeazaListaCos();
+      calculeazaTotalPlata(); 
+      }
+
+    else {
+      alert('Cosul este gol!');
+      }
+    }
+
+    function calculeazaTotalPlata() {
+      const totalPlata = cosCumparaturi.reduce((total, produs) => total + produs.pret * produs.cantitate, 0);
+      document.getElementById('total-plata').textContent = 'Total de plată: ' + totalPlata + ' lei';
+    }
+
+    function afiseazaCos() {
+      alert('Coșul tău conține:\n' + cosCumparaturi.map(produs => `${produs.nume} x ${produs.cantitate} - ${produs.pret * produs.cantitate} lei`).join('\n') + '\nTotal de plată: ' + totalPlata + ' lei');
+    }
+  </script>
+</body>
+
+<footer>
+    <div class = "icons">
+    <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook fa-sm"></i></a>
+    <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram fa-sm"></i></a>
+    <a href="mailto: tudor59@yahoo.com"><i class="fa-regular fa-envelope fa-sm"></i></a>
+    </div>
+    <p>
+        <span class="nowrap">Copyright &copy; <time id="year"></time></span>
+        <span class="nowrap">Panouri SERIALE</span>
+    </p>
+</footer>
+
+</html>
